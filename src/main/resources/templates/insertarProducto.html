@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+        <link th:href="@{/vendor/twitter-bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+
+<meta charset="ISO-8859-1">
+<title>Insertar producto</title>
+</head>
+<body>
+
+ <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Productos</h1>
+                </div>
+            </div>
+</div>
+              
+               
+          
+   
+<form th:action="@{/guardarProducto}" th:object="${producto}" method="post">
+    <fieldset>
+        <legend>Datos del producto</legend>
+        <table>
+            <tr>
+                <td><label for="nombre">Nombre: </label></td>
+                <td><input type="text" th:field="*{nombre}" /></td>
+            </tr>
+            <tr>
+                <td><label for="precio">Precio: </label></td>
+                <td><input type="number" th:field="*{precio}" /></td>
+            </tr>
+            <tr>
+                <td><label for="paisOrigen">Pais Origen: </label></td>
+                <td><input type="text" th:field="*{paisOrigen}" /></td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <button type="submit">Registrar...</button>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+
+
+
+
+<!--  
+ 						  <form th:action="@{/insertarProducto/{id}(id=${producto.id})}" method="post" th:objet="${producto}">
+ 							<div class="row g-3">
+ 							<div class="form-group col-md-3">
+ 								<label for="nombre">Nombre:</label>
+ 								 <input type="text" class="form-control" id="nombre" th:field="*{nombre}"/>
+ 							</div>
+ 							
+ 							<div class="form-group col-md-3">
+ 								<label for="precio">Precio:</label>
+ 								<input type="number" class="form-control" id="nombre" th:field="*{precio}"/>
+ 							</div>
+ 							
+ 							<div class="form-group col-md-3">
+ 								<label for="paisOrigen">Pais:</label>
+ 								<input type="text" class="form-control" id="paisOrigen" th:field="*{paisOrigen}"/>
+ 							</div>
+ 							
+ 							
+ 							
+ 							</div>
+ 						<div class="row m-3">
+ 							<div class="col-md-6">
+ 								<button class="btn btn-outline-secondary" type="reset" style="...">Resetear formulario</button>
+ 							</div>
+ 							<div class="col-md-6">
+ 								<button class="btn btn-success" type="submit" style="...">Guardar producto</button>
+ 							</div>
+ 						</div>
+ 						</form>
+ 					
+ 					-->
+
+</body>
+</html>

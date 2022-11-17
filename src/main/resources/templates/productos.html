@@ -1,0 +1,85 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <link th:href="@{/vendor/twitter-bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+        <title>Productos</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Productos</h1>
+                    <a th:href="@{/insertarProducto/0}">Insertar producto nuevo</a>
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Todos</h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Pais</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <th:block th:each="producto : ${productos}" th:classappend="${producto.enStock}? table-success:table-danger">
+                                <tr>
+                                    <td th:text="${producto.id}"></td>
+                                    <td th:text="${producto.nombre}"></td>
+                                    <td th:text="${producto.precio}"></td>
+                                    <td th:text="${producto.paisOrigen}"></td>
+                                    <td>
+                                    	<a th:href="@{/insertarProducto/{id}(id=${producto.id})}" class="btn btn-warning">Modificar</a>
+                                 	    <a th:href="@{/eliminarProducto/{id}(id=${producto.id})}" class="btn btn-danger">Borrar</a>
+                                    </td>
+                                </tr>
+                            </th:block>
+                        </tbody>
+                    </table>
+                </div>
+                
+               
+                <div class="col-md-6">
+                    <div id="mensajeNoEncontrado" class="alert alert-warning hide">
+                        <strong>No encontrado!</strong> No existe un producto con el ID buscado.
+                    </div>
+                    <div class="input-group">
+                        <input id="idProductoABuscar" type="text" class="form-control" placeholder="#ID producto a buscar"/>
+                        <div class="input-group-btn">
+                            <button id="botonBuscarProductoPorId" class="btn btn-info" type="button">Buscar</button>
+                        </div>
+                    </div>
+                    <h4>Solo Producto con Id #<span id="idProductoEncontrada"></span></h4>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyTablaProducto"></tbody>
+                    </table>
+                    
+                   
+                </div>
+            </div>
+        </div>
+        
+         <!-- Lib JS -->
+        <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+        <script th:src="@{/vendor/twitter-bootstrap/js/bootstrap.min.js}"></script>
+
+        <!-- JS de la aplicacion -->
+        <script th:src="@{/js/escuelita.js}"></script>
+        <script th:src="@{/js/ui/ui.js}"></script>
+        <script th:src="@{js/service/service.js}"></script>
+        <script th:src="@{js/ui/producto/producto.js}"></script>
+        <script th:src="@{/js/service/producto/producto.js}"></script>
+
+        
+    </body>
+</html>
