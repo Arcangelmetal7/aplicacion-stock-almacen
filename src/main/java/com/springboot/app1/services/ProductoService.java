@@ -24,7 +24,6 @@ public class ProductoService {
 	}
 
 	public Producto insertarProducto(Producto producto) {
-		// productoRepository.save(producto);
 
 		return productoRepository.save(producto);
 	}
@@ -37,6 +36,11 @@ public class ProductoService {
 
 	public void borrarPorId(Long id) {
 		productoRepository.deleteById(id);
+	}
+
+	public List<Producto> buscarPorNombre(String nombre) {
+
+		return productoRepository.findByNombreEquals(nombre);
 	}
 
 }

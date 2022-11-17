@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+ <link th:href="@{/vendor/twitter-bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+       
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<div class="container">
+	 <div class="row">
+                <div class="col-md-12">
+                    <h1>Productos encontrados </h1>
+                   <p>Para volver al listado haz click<a href="productos">ac&aacute;</a></p>
+                </div>
+      </div>
+      <div class="row">
+      	 <div class="col-md-6">
+                    
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Pais</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        	 <th:block th:each="producto : ${productos}">
+                              
+                              <tr>
+                                    <td th:text="${producto.id}"></td>
+                                    <td th:text="${producto.nombre}"></td>
+                                    <td th:text="${producto.precio}"></td>
+                                    <td th:text="${producto.paisOrigen}"></td>
+                                    <td>
+                                    	<a th:href="@{/insertarProducto/{id}(id=${producto.id})}" class="btn btn-warning">Modificar</a>
+                                 	    <a th:href="@{/eliminarProducto/{id}(id=${producto.id})}" class="btn btn-danger">Borrar</a>
+                                    </td>
+                                </tr>
+                           </th:block>
+                        </tbody>
+                    </table>
+                </div>
+      
+      </div>
+
+</div>
+
+</body>
+</html>

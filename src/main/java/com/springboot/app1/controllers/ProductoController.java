@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -51,6 +52,27 @@ public class ProductoController {
 		model.addAttribute("productos", productos);
 
 		return "productos";
+	}
+
+//Falta implementar
+	@RequestMapping("/encontrarPorIdProducto/{id}")
+	public String encontrarPorIdProducto(Model model, @PathVariable("id") Long id) {
+
+		Producto producto = productoService.buscarPorId(id);
+
+		model.addAttribute("producto", producto);
+
+		return "productoPorId";
+	}
+
+	@GetMapping("/encontrarPorNombreProducto/{nombre}")
+	public String buscarPorNombreProducto(Model model, @PathVariable("nombre") String nombre) {
+
+		List<Producto> productos = productoService.buscarPorNombre(nombre);
+
+		model.addAttribute("productos", productos);
+
+		return "productoPorId";
 	}
 
 }
